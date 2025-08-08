@@ -1,11 +1,5 @@
 import logging
 
-from iss import install_precommit
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-
 from .folder_structure import (
     create_addons,
     create_docker_compose,
@@ -16,11 +10,15 @@ from .folder_structure import (
     create_requirement,
     create_ruff,
 )
-from .precommit import create_precommit_config
+from .precommit import create_precommit_config, install_precommit
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 def create_all(path, odoo_version, python):
     """Create the Odoo standard folder structure at PATH."""
-    logger.info(f"Please make sure your virtual environment is activated.")
+    logger.info("Please make sure your virtual environment is activated.")
     create_dockerfile(path, odoo_version=odoo_version, python=python)
     create_dockerignore(path)
     create_docker_compose(path)
@@ -32,7 +30,6 @@ def create_all(path, odoo_version, python):
     create_addons(path)
     create_precommit_config(path)
     install_precommit()
-
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-from iss.utils import write_file
+from odooss.utils import write_file
 
 
 def create_ruff(path: str):

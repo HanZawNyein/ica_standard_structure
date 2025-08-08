@@ -1,5 +1,5 @@
 [project]
-name = "iss"
+name = "odooss"
 version = "0.1.0"
 description = "IdeaCode Academy Odoo Standard Structure — starting point repo."
 requires-python = ">=3.10"
@@ -10,6 +10,8 @@ dependencies = [
     "pre-commit>=3.8.0",
     "click>=8.2.1",
 ]
+readme = "README.md"       # Path to your README file
+
 
 authors = [
     { name = "Agga", email = "hanzawnyineonline@gmail.com" }
@@ -43,8 +45,7 @@ profile = "black"
 line_length = 88
 
 [tool.uv.sources]
-iss = { workspace = true }
-
+odoo = { workspace = true }
 
 [project.scripts]
-iss = "iss.cli:cli"
+odooss = "odooss.cli:cli"  # <-- typo here, should be odooss.cli:cli

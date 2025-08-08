@@ -1,13 +1,14 @@
-from iss import (
+from odooss import (
     create_addons,
     create_docker_compose,
     create_dockerfile,
     create_dockerignore,
     create_gitignore,
+    create_precommit_config,
     create_readme,
     create_requirement,
     create_ruff,
-    install_precommit, create_precommit_config
+    install_precommit,
 )
 
 if __name__ == "__main__":

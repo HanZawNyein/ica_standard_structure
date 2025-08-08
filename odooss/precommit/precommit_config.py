@@ -1,10 +1,10 @@
-import os
 import subprocess
-from iss.utils import write_file
+
+from odooss.utils import write_file
 
 
 def create_precommit_config(path: str):
-    content="""\
+    content = """\
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.4  # Use latest version
@@ -28,6 +28,7 @@ def install_precommit(path: str):
         print("pre-commit installed and ran successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error running pre-commit commands: {e}")
+
 
 if __name__ == "__main__":
     path = "/home/agga/Documents/odoo-dev/ica_standard_structure/test"
