@@ -1,7 +1,7 @@
 from iss.utils import write_file
 
 
-def create_dockerfile(path: str, version: float, python: float):
+def create_dockerfile(path: str, odoo_version: float, python: float):
     content = f"""# Stage 1: Build Dependencies
 FROM python:{python}-slim AS builder
 
@@ -12,7 +12,7 @@ COPY ./requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Stage 2: Final Image with Odoo
-FROM odoo:{version}
+FROM odoo:{odoo_version}
 
 USER root
 

@@ -41,3 +41,10 @@ target-version = ["py310"]
 [tool.isort]
 profile = "black"
 line_length = 88
+
+[tool.uv.sources]
+iss = { workspace = true }
+
+
+[project.scripts]
+iss = "iss.cli:cli"

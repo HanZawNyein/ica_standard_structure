@@ -6,7 +6,8 @@ def create_addons(path: str):
 
 
 def create_readme(path: str):
-    write_file(path, "", filename="README.md")
+    content = "# Powered by IdeaCode Academy"
+    write_file(path, content, filename="README.md")
 
 
 if __name__ == "__main__":

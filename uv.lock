@@ -114,6 +114,11 @@ dependencies = [
     { name = "ruff" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "iss" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "black", specifier = ">=24.0.0" },
@@ -122,6 +127,9 @@ requires-dist = [
     { name = "pre-commit", specifier = ">=3.8.0" },
     { name = "ruff", specifier = ">=0.12.8" },
 ]
+
+[package.metadata.requires-dev]
+dev = [{ name = "iss", virtual = "." }]
 
 [[package]]
 name = "mypy-extensions"
