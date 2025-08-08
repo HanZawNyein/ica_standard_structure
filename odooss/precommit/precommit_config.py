@@ -23,6 +23,7 @@ repos:
 def install_precommit(path: str):
     # Change directory to target path and run the commands
     try:
+        subprocess.run(["git", "init"], cwd=path, check=True)
         subprocess.run(["pre-commit", "install"], cwd=path, check=True)
         subprocess.run(["pre-commit", "run", "--all-files"], cwd=path, check=True)
         print("pre-commit installed and ran successfully.")
