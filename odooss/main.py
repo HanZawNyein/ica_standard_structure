@@ -29,7 +29,7 @@ def create_all(path, odoo_version, python):
     create_readme(path)
     create_addons(path)
     create_precommit_config(path)
-    install_precommit()
+    install_precommit(path)
 
 
 if __name__ == "__main__":
