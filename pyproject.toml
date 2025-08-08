@@ -10,6 +10,14 @@ dependencies = [
     "pre-commit>=3.8.0",
 ]
 
+authors = [
+    { name = "Agga", email = "hanzawnyineonline@gmail.com" }
+]
+
+[project.urls]
+Homepage = "https://github.com/HanZawNyein/ica_standard_structure.git"
+Repository = "https://github.com/HanZawNyein/ica_standard_structure.git"
+
 [tool.ruff]
 line-length = 88
 
