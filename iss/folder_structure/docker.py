@@ -67,7 +67,7 @@ secrets:
     write_file(path, content, filename="compose.yml")
 
 
-def create_dockeriginore(path: str):
+def create_dockerignore(path: str):
     content = """\
 # Include any files or directories that you don't want to be copied to your
 # container here (e.g., local build artifacts, temporary files, etc.).
@@ -113,4 +113,4 @@ if __name__ == "__main__":
     python = 3.10
     create_dockerfile(path, version, python)
     create_docker_compose(path)
-    create_dockeriginore(path)
+    create_dockerignore(path)

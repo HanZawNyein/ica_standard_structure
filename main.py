@@ -1,10 +1,11 @@
 from iss import (
+    create_addons,
     create_docker_compose,
     create_dockerfile,
-    create_dockeriginore,
+    create_dockerignore,
     create_gitignore,
-    create_readme,create_addons,
-    create_requreiment,
+    create_readme,
+    create_requirement,
     create_ruff,
 )
 
@@ -15,11 +16,11 @@ if __name__ == "__main__":
 
     # creating docker files
     create_dockerfile(path, version=version, python=python)
-    create_dockeriginore(path)
+    create_dockerignore(path)
     create_docker_compose(path)
 
     create_gitignore(path)
-    create_requreiment(path)
+    create_requirement(path)
     create_ruff(path)
     create_readme(path)
     create_addons(path)
