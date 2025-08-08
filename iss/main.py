@@ -1,5 +1,7 @@
 import logging
 
+from iss import install_precommit
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -29,6 +31,7 @@ def create_all(path, odoo_version, python):
     create_readme(path)
     create_addons(path)
     create_precommit_config(path)
+    install_precommit()
 
 
 

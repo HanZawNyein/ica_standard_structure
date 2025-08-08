@@ -1,3 +1,5 @@
+import os
+import subprocess
 from iss.utils import write_file
 
 
@@ -18,6 +20,14 @@ repos:
     write_file(path, content, filename=".pre-commit-config.yaml")
 
 
+def install_precommit(path: str):
+    # Change directory to target path and run the commands
+    try:
+        subprocess.run(["pre-commit", "install"], cwd=path, check=True)
+        subprocess.run(["pre-commit", "run", "--all-files"], cwd=path, check=True)
+        print("pre-commit installed and ran successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error running pre-commit commands: {e}")
 
 if __name__ == "__main__":
     path = "/home/agga/Documents/odoo-dev/ica_standard_structure/test"

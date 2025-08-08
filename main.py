@@ -7,6 +7,7 @@ from iss import (
     create_readme,
     create_requirement,
     create_ruff,
+    install_precommit, create_precommit_config
 )
 
 if __name__ == "__main__":
@@ -24,3 +25,5 @@ if __name__ == "__main__":
     create_ruff(path)
     create_readme(path)
     create_addons(path)
+    create_precommit_config(path)
+    install_precommit(path)
