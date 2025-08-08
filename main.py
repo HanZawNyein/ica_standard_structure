@@ -15,7 +15,7 @@ if __name__ == "__main__":
     python = 3.10
 
     # creating docker files
-    create_dockerfile(path, version=version, python=python)
+    create_dockerfile(path, odoo_version=version, python=python)
     create_dockerignore(path)
     create_docker_compose(path)
 
