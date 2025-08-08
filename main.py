@@ -3,7 +3,7 @@ from iss import (
     create_dockerfile,
     create_dockeriginore,
     create_gitignore,
-    create_necessary_files,
+    create_readme,create_addons,
     create_requreiment,
     create_ruff,
 )
@@ -21,4 +21,5 @@ if __name__ == "__main__":
     create_gitignore(path)
     create_requreiment(path)
     create_ruff(path)
-    create_necessary_files(path)
+    create_readme(path)
+    create_addons(path)
