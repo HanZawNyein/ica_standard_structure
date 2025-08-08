@@ -32,7 +32,7 @@ def create_docker_compose(path):
 version: '3.1'
 services:
   web:
-    build: 
+    build:
       context: .
     depends_on:
       - db
