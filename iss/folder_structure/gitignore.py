@@ -1,3 +1,8 @@
+from iss.utils import write_file
+
+
+def create_gitignore(path: str):
+    content = """\
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -205,4 +210,15 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
-test
+
+config/
+odoo_pg_pass
+"""
+    write_file(path, content, filename=".gitignore")
+
+
+if __name__ == "__main__":
+    path = "/home/agga/Documents/odoo-dev/ica_standard_structure/test"
+    version = 18.0
+    python = 3.10
+    create_gitignore(path)
