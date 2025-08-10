@@ -18,10 +18,10 @@ def cli():
 @click.option("--odoo_version", default="18.0", help="Odoo version to use (e.g. 18.0)")
 @click.option("--python", default="3.10", help="Python version to use (e.g. 3.10)")
 @click.option("--vcs", default="github", help="use some vcs (e.g. github, gitlab,etc)")
-def create(path, odoo_version, python,vcs):
+def create(path, odoo_version, python, vcs):
     """Create the Odoo standard folder structure at PATH."""
     logger.info("Please make sure your virtual environment is activated.")
-    create_all(path, odoo_version, python,vcs)
+    create_all(path, odoo_version, python, vcs)
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 from odooss.utils import write_file
 
 
-def create_github_workflow(path:str):
-    content="""\
+def create_github_workflow(path: str):
+    content = """\
 name: Odoo Modules Update with Docker Compose
 
 on:
@@ -64,7 +64,7 @@ jobs:
         run: |
           echo "Commit message:"
           echo "${{ steps.get_commit.outputs.message }}"
-          modules=$(echo "${{ steps.get_commit.outputs.message }}" | sed -n 's/.*#odoo-module:\([^ ]*\).*/\1/p' || true)
+          modules=$(echo "${{ steps.get_commit.outputs.message }}" | sed -n 's/.*#odoo-module:\\([^ ]*\\).*/\1/p' || true)
           if [ -z "$modules" ]; then
             echo "No modules found to update."
             modules=""
@@ -72,7 +72,7 @@ jobs:
           echo "modules=$modules" >> $GITHUB_OUTPUT
 
       - name: Debug extracted modules
-        run: | 
+        run: |
           echo "Modules extracted: '${{ steps.extract_modules.outputs.modules }}'"
 
       - name: Update Odoo modules inside container
@@ -86,6 +86,7 @@ jobs:
         run: docker compose down
     """
     write_file(path, content, filename=".github/ci_cd.yml")
+
 
 if __name__ == "__main__":
     path = "/home/agga/Documents/odoo-dev/ica_standard_structure/test"

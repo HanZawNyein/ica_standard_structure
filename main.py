@@ -3,13 +3,13 @@ from odooss import (
     create_docker_compose,
     create_dockerfile,
     create_dockerignore,
+    create_github_workflow,
     create_gitignore,
     create_precommit_config,
     create_readme,
     create_requirement,
     create_ruff,
     install_precommit,
-    create_github_workflow,
 )
 
 if __name__ == "__main__":

@@ -11,6 +11,7 @@ from .folder_structure import (
 )
 from .precommit import create_precommit_config, install_precommit
 from .vcs import create_github_workflow
+
 __all__ = [
     "create_precommit_config",
     "install_precommit",

@@ -1,8 +1,8 @@
+import logging
 import subprocess
 import sys
 
 from odooss.utils import write_file
-import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -19,10 +19,12 @@ pre-commit>=3.8.0
     try:
         # Run pip via current Python interpreter
         subprocess.run(
-            [sys.executable, "-m", "pip", "install", "-r", file_name], cwd=path, check=True
+            [sys.executable, "-m", "pip", "install", "-r", file_name],
+            cwd=path,
+            check=True,
         )
     except subprocess.CalledProcessError:
-        logger.info('you need to install requirements.txt first.')
+        logger.info("you need to install requirements.txt first.")
 
 
 if __name__ == "__main__":

@@ -12,11 +12,12 @@ from .folder_structure import (
 )
 from .precommit import create_precommit_config, install_precommit
 from .vcs import create_github_workflow
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def create_all(path, odoo_version, python,vcs):
+def create_all(path, odoo_version, python, vcs):
     """Create the Odoo standard folder structure at PATH."""
     logger.info("Please make sure your virtual environment is activated.")
     create_dockerfile(path, odoo_version=odoo_version, python=python)
@@ -30,7 +31,7 @@ def create_all(path, odoo_version, python,vcs):
     create_addons(path)
     create_precommit_config(path)
     install_precommit(path)
-    if vcs == 'github':
+    if vcs == "github":
         create_github_workflow(path)
 
 
