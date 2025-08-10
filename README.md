@@ -3,8 +3,12 @@
 
 
 ```zsh
- odooss create <your-dir-path> --odoo_version 18.0 --python 3.10
+ odooss create <your-dir-path> --odoo_version 18.0 --python 3.10 --vcs github
 ```
+
+- ```--odoo_version``` - for odoo docker image tag
+- ```--python``` - for python-<version>-slim docker image tag
+- ```--vcs``` - for version control system (e.g. github, gitlab, bitbucket, etc...)
 
 ## output will be like this
 
