@@ -56,3 +56,5 @@ git add .
 git commit -m "[ADD] project initalize"
 git push origin <branch>
 ```
+
+# Agga, IdeaCode Academy
