@@ -51,6 +51,7 @@ ruff check --fix
 
 ## now you can push to your branch. 
 if pushing was failed. you need to check with `ruff` again.
+
 ```zsh
 git add .
 git commit -m "[ADD] project initalize"
