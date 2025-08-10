@@ -57,5 +57,16 @@ git add .
 git commit -m "[ADD] project initalize"
 git push origin <branch>
 ```
-#
+### if you are using automaion flow. like `github` action need to follow instructions.
+
+## Github
+### Settings >> Security >> Actions secrets and variables >> secrets >> Repository secrets
+#### add this variables
+- ODOO_DB_NAME
+- ODOO_DB_PASSWORD
+
+#### now git push and check your github action.
+
+# we  will be continue for other vcs (like gitlab, bitbucket, etc....) in the future
+
 ###  Agga, IdeaCode Academy

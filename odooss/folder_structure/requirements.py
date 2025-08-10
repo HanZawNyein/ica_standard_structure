@@ -2,6 +2,10 @@ import subprocess
 import sys
 
 from odooss.utils import write_file
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def create_requirement(path: str):
@@ -12,10 +16,13 @@ pre-commit>=3.8.0
     file_name = "requirements.txt"
     write_file(path, content, filename=file_name)
 
-    # Run pip via current Python interpreter
-    subprocess.run(
-        [sys.executable, "-m", "pip", "install", "-r", file_name], cwd=path, check=True
-    )
+    try:
+        # Run pip via current Python interpreter
+        subprocess.run(
+            [sys.executable, "-m", "pip", "install", "-r", file_name], cwd=path, check=True
+        )
+    except subprocess.CalledProcessError:
+        logger.info('you need to install requirements.txt first.')
 
 
 if __name__ == "__main__":

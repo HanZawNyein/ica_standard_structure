@@ -9,6 +9,7 @@ from odooss import (
     create_requirement,
     create_ruff,
     install_precommit,
+    create_github_workflow,
 )
 
 if __name__ == "__main__":
@@ -28,3 +29,5 @@ if __name__ == "__main__":
     create_addons(path)
     create_precommit_config(path)
     install_precommit(path)
+    # vcs
+    create_github_workflow(path)
