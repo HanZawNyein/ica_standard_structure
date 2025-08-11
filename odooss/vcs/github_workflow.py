@@ -15,43 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout repo
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Create odoo_pg_pass secret file
-        run: echo "${{ secrets.ODOO_DB_PASSWORD }}" > odoo_pg_pass
-
-      - name: Create config directory and odoo.conf
-        run: |
-          mkdir -p config
-          cat > config/odoo.conf <<EOF
-          [options]
-          ; This is the Odoo configuration file
-          admin_passwd=master
-          db_name=${{ secrets.ODOO_DB_NAME }}
-          addons_path = /mnt/extra-addons
-          EOF
-
-      - name: Start Docker Compose
-        run: docker compose up -d
-
-      - name: Wait for Odoo to be ready
-        run: |
-          echo "Waiting for Odoo to start..."
-          timeout=300
-          interval=5
-          elapsed=0
-          while ! docker compose exec web curl -s http://localhost:8069 > /dev/null; do
-            if [ $elapsed -ge $timeout ]; then
-              echo "Timeout waiting for Odoo to start."
-              exit 1
-            fi
-            echo -n "."
-            sleep $interval
-            elapsed=$((elapsed + interval))
-          done
-          echo "Odoo is ready."
-
+      # Step 2: Get last commit message
       - name: Get latest commit message
         id: get_commit
         run: |
@@ -59,31 +27,43 @@ jobs:
           git log -1 --pretty=%B >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      # Step 3: Extract modules from commit message
       - name: Extract modules from commit message
         id: extract_modules
         run: |
           echo "Commit message:"
           echo "${{ steps.get_commit.outputs.message }}"
-          modules=$(echo "${{ steps.get_commit.outputs.message }}" | sed -n 's/.*#odoo-module:\\([^ ]*\\).*/\1/p' || true)
+          message="${{ steps.get_commit.outputs.message }}"
+          # Extract after #odoo-module: and replace commas with spaces
+          modules=$(echo "$message" | sed -n 's/.*#odoo-module:\([^ ]*\).*/\1/p' | tr ',' ' ' || true)
           if [ -z "$modules" ]; then
             echo "No modules found to update."
             modules=""
           fi
           echo "modules=$modules" >> $GITHUB_OUTPUT
 
+      # Step 4: Debug
       - name: Debug extracted modules
         run: |
           echo "Modules extracted: '${{ steps.extract_modules.outputs.modules }}'"
 
-      - name: Update Odoo modules inside container
+      # Step 5: SSH to remote and update modules
+      - name: SSH into server and update modules
         if: steps.extract_modules.outputs.modules != ''
-        run: |
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ${{ secrets.SSH_FILE_PATH }}
+            echo "Pulling latest code from branch ${{ github.ref_name }}..."
+            git fetch origin ${{ github.ref_name }}
+            git checkout ${{ github.ref_name }}
+            git pull origin ${{ github.ref_name }}
             echo "Updating modules: ${{ steps.extract_modules.outputs.modules }}"
-            docker compose exec web odoo -u ${{ steps.extract_modules.outputs.modules }} -d ${{ secrets.ODOO_DB_NAME }} --stop-after-init --no-http
-
-      - name: Shutdown Docker Compose
-        if: always()
-        run: docker compose down
+            docker compose run web odoo -u ${{ steps.extract_modules.outputs.modules }} -d ${{ secrets.ODOO_DB_NAME }} --stop-after-init --no-http
     """
     write_file(path, content, filename=".github/ci_cd.yml")
 

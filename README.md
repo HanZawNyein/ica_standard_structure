@@ -66,8 +66,18 @@ git push origin <branch>
 ## Github
 ### Settings >> Security >> Actions secrets and variables >> secrets >> Repository secrets
 #### add this variables
-- ODOO_DB_NAME
-- ODOO_DB_PASSWORD
+- `ODOO_DB_NAME`
+- `ODOO_DB_PASSWORD`
+- `REMOTE_HOST` - <your-server-ip> 192.169.100.1
+- `REMOTE_USER` - ubuntu or root
+- `SSH_FILE_PATH` - /root/your-project/
+- `SSH_PRIVATE_KEY` - server access private key
+
+now you can use smart commands and add in git commit message like this -
+
+```
+[ADD] res.partner model in age fields. #odoo-module:contacts,sale
+```
 
 #### now git push and check your github action.
 
